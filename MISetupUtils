@@ -12,5 +12,5 @@ then
    ./Binstall Binstall
 fi
 
-Binstall GitExtend GitInit GitListRepos GitSend GitSetup
+Binstall GitAllRepos GitExtend GitInit GitListRepos GitSend GitSetup GitUpdate
 

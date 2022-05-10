@@ -1,0 +1,13 @@
+#!/bin/bash
+if [[ ! -f gitcfg ]]; then
+   echo "No file 'gitcfg' in current directory"
+   echo "Specify the paths at which to pull from seperated by newlines in gitcfg"
+   exit
+fi
+
+root=$(pwd);
+cat gitcfg | while read path; do
+   cd $path
+   GitInit #ideally, this should pull, otherwise attempts to initialize remote repos
+   cd $root
+done

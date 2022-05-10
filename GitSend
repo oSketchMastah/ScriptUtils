@@ -7,5 +7,5 @@ then
 fi
 #assumes you're on a branch on which to publish changes
 git add .
-git commit -a -m $1
+git commit -m "$1"
 git push -u #push.default == current (branch)
