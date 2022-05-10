@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+   echo "must specify a commit message"
+   exit 1
+fi
+#assumes you're on a branch on which to publish changes
+git add .
+git commit -a -m $1
+git push -u #push.default == current (branch)

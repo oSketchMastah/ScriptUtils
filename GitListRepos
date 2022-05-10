@@ -1,0 +1,4 @@
+#!/bin/bash
+
+curl https://api.github.com/users/$1/repos |  grep -o '"name": "[^ ]*"' |  grep -o ' ".*"$' |  grep -o '[^ "]*'
+

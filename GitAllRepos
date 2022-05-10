@@ -1,0 +1,26 @@
+#!/bin/bash
+if [[ $# -ne 1 ]]; then
+   echo "Usage: Owner"
+fi
+
+#Make sure we can communicate with git via ssh
+GitSetup
+
+#Some variables for the process
+guser=$1; #who owns the repos
+
+GitListRepos $guser | 
+while read repo
+do
+  echo "Installing $repo ...";
+  
+  if [[ -d $repo ]];
+  then
+     cd $repo
+     GitInit
+     cd ../
+  else
+     GitInit $guser $repo
+  fi
+  
+done

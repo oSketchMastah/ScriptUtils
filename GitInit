@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if [[ $# -eq 1 ]] || [[ $# -gt 4 ]];
+then
+   echo "Usage: (Owner Repo) (NewBranch) (BranchName)" #0,2,3,4 params
+   echo "no args -> refresh the current repo, otherwise clone and track the branch of the specified repo"
+   exit 1
+fi
+
+if [[ $# -eq 0 ]]; then
+   if [[ -d .git ]]; then
+      git pull --rebase
+   else
+      git init
+      git add .
+      git commit -m "first commit"
+      git branch -M main
+      echo "Enter name of owner:"
+      read owner
+      echo "Enter name of repo:"
+      read repo
+      git remote add origin git@github.com:$owner/$repo.git
+      git push -u origin main
+   fi
+   exit
+fi
+if [[ $# -eq 2 ]]; then
+   git clone git@github.com:$1/$2.git
+   exit
+fi
+
+if [[ $# -eq 3 ]]; then
+   git clone --single-branch git@github.com:$1/$2.git
+else
+   git clone --branch $4 --single-branch git@github.com:$1/$2.git
+fi
+cd $2
+git checkout -b $3

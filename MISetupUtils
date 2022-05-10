@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rel=$(echo $0 | grep -o ".*/")
+#echo $0 #the place (relative to pwd) of this file
+#echo $(pwd) # the place from which you call the script
+if [[ $rel ]]; then cd $rel; fi
+
+#MISetupUtils does not install itself because it must change 
+if [[ ! -f /usr/local/bin/Binstall ]]
+then
+   sudo chmod +x Binstall
+   ./Binstall Binstall
+fi
+
+Binstall GitExtend GitInit GitListRepos GitSend GitSetup
+

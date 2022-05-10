@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ $# -lt 3 ]
+then
+   echo "Usage: org repo newbranch (origin_branch)"
+   exit 1
+fi
+
+workdir=$(mktemp -d)
+if [[ ! "$workdir" || ! -d "$workdir" ]]; then
+  echo "Could not create temp dir"
+  exit 1
+fi
+#tie lifetime of temp directory to this script
+function cleantemp { rm -rf $workdir; }
+trap cleantemp EXIT
+
+cd $workdir
+
+GitSetup
+GitInit $@
+cd $2
+GitSend "create working directory"
+

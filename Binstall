@@ -1,0 +1,12 @@
+#!/bin/bash
+
+exeroot=/usr/local/bin
+sudo cp $@ $exeroot
+
+while [[ $# -ne 0 ]]
+do
+   sudo chmod +x $exeroot/$1
+   shift
+done
+
+
