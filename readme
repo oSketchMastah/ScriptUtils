@@ -1,4 +1,4 @@
-#ScriptUtils
+# ScriptUtils
 Make MISetupUtils executable and execute to install all the utilities
 -Typical workflow: 
 	-Setup work with GitInit using all four parameters (personal and shared branch)
