@@ -9,7 +9,7 @@ fi
 
 if [[ $# -eq 0 ]]; then
    if [[ -d .git ]]; then
-      git pull --rebase origin main
+      git pull --rebase
    else
       git init
       git branch -m main
